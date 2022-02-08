@@ -22,7 +22,7 @@ body{
     height: 200px;
     border: 1px solid black;
     box-sizing: border-box;
-    font-size: 36px;
+    font-size: 100px;
     color: black;
     display: flex;
     justify-content: center;
