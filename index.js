@@ -1,7 +1,18 @@
+let result = [];
+window.addEventListener("beforeunload", setLocalStorage);
+window.addEventListener("load", getLocalStorage);
+function setLocalStorage() {
+    localStorage.setItem("wins", JSON.stringify(result));
+}
+function getLocalStorage() {
+    if (localStorage.getItem("wins")) {
+        result = JSON.parse(localStorage.getItem("wins"));
+        tableWins(result);
+    }
+}
+
 const wrapper = document.querySelector(".wrapper");
 const areaWrapper = document.querySelector(".area-wrapper");
-
-let result = "";
 const sizeBlocks = 9;
 let i = 0;
 while (i < sizeBlocks) {
@@ -22,7 +33,6 @@ windowsResult.append(windowsModal);
 const resultContent = document.createElement("div");
 resultContent.classList.add("windows-result__content");
 windowsModal.append(resultContent);
-
 const resetGame = document.createElement("div");
 resetGame.classList.add("reset-game");
 windowsModal.append(resetGame);
@@ -39,10 +49,10 @@ wrapper.addEventListener("click", (e) => {
         e.target.innerHTML = "O";
         e.target.style.color = "red";
       }
-      checkArea();
       move++;
+      checkArea();
       if(move === 9){
-        winnerResult("Ничья");
+        winnerResult("Draw");
       }
     }
   }
@@ -66,21 +76,25 @@ function checkArea() {
       boxes[arrProv[index][1]].innerHTML === "X" &&
       boxes[arrProv[index][2]].innerHTML === "X"
     ) {
-      winnerResult("Победили: Крестики");
+      winnerResult("Winner: Players One");
     }
     if (
       boxes[arrProv[index][0]].innerHTML === "O" &&
       boxes[arrProv[index][1]].innerHTML === "O" &&
       boxes[arrProv[index][2]].innerHTML === "O"
     ) {
-      winnerResult("Победили: Нолики");
+      winnerResult("Winner:  Players Two");
     }
   });
 }
 function winnerResult(winner) {
   windowsResult.style.display = "flex";
   resultContent.innerHTML = winner;
-  resultContent.innerHTML += `<br>Количество ходов : ${move}`;
+  result.push(winner);
+  if(result.length > 9){
+    result.shift();
+  }
+  resultContent.innerHTML += `<br>Number of moves : ${move}`;
 }
 function closeOverlay() {
   windowsResult.style.display = "none";
@@ -88,3 +102,4 @@ function closeOverlay() {
 }
 overlay.addEventListener("click", closeOverlay);
 resetGame.addEventListener("click", closeOverlay);
+console.log(result);
