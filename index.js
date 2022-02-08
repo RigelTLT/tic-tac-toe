@@ -37,6 +37,12 @@ const resetGame = document.createElement("div");
 resetGame.classList.add("reset-game");
 windowsModal.append(resetGame);
 resetGame.innerHTML = "New Game";
+const areaResult = document.createElement("div");
+areaResult.classList.add("area-result");
+areaWrapper.append(areaResult);
+const tableResult = document.createElement("table");
+tableResult.classList.add("table-result");
+areaResult.append(tableResult);
 
 let move = 0;
 wrapper.addEventListener("click", (e) => {
@@ -100,6 +106,32 @@ function closeOverlay() {
   windowsResult.style.display = "none";
   location.reload();
 }
+function tableWins(result){
+    if(result.length>0){
+        const tableThGame = document.createElement("th");
+        tableThGame.classList.add("table__th");
+        tableResult.append(tableThGame);
+        tableThGame.innerHTML = 'Game'
+        const tableThScore = document.createElement("th");
+        tableThScore.classList.add("table__th");
+        tableResult.append(tableThScore);
+        tableThScore.innerHTML = 'Wins'
+        result.forEach(function(value, index){
+            console.log(index);
+            const tableTr = document.createElement("tr");
+            tableTr.classList.add("table__tr");
+            tableResult.append(tableTr);
+            const tableTdGame = document.createElement("td");
+            tableTdGame.classList.add("table__td");
+            tableResult.append(tableTdGame);
+            tableTdGame.innerHTML = index;
+            const tableTdScore = document.createElement("td");
+            tableTdScore.classList.add("table__td");
+            tableResult.append(tableTdScore);
+            tableTdScore.innerHTML = value;
+
+        })
+    }
+}
 overlay.addEventListener("click", closeOverlay);
 resetGame.addEventListener("click", closeOverlay);
-console.log(result);
