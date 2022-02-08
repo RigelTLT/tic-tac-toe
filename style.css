@@ -82,3 +82,28 @@ body {
  .table__tr:hover td {
     background: rgba(51, 51, 153, .1);
  }
+ footer {
+  width: 100%;
+}
+
+.footer__text {
+  font-size: 24px;
+}
+
+.footer__link {
+  text-decoration: none;
+  font-size: 24px;
+  color: black;
+}
+
+.footer__img {
+  width: 150px;
+}
+
+.footer__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 150px;
+  padding: 0px 60px;
+}
