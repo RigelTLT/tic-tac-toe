@@ -55,6 +55,7 @@ wrapper.addEventListener("click", (e) => {
         e.target.innerHTML = "O";
         e.target.style.color = "red";
       }
+      document.getElementById('sound').play()
       move++;
       checkArea();
       if(move === 9){
@@ -97,7 +98,7 @@ function winnerResult(winner) {
   windowsResult.style.display = "flex";
   resultContent.innerHTML = winner;
   result.push(winner);
-  if(result.length > 9){
+  if(result.length > 10){
     result.shift();
   }
   resultContent.innerHTML += `<br>Number of moves : ${move}`;
@@ -108,13 +109,16 @@ function closeOverlay() {
 }
 function tableWins(result){
     if(result.length>0){
+        const tableTr = document.createElement("tr");
+            tableTr.classList.add("table__tr");
+            tableResult.append(tableTr);
         const tableThGame = document.createElement("th");
         tableThGame.classList.add("table__th");
-        tableResult.append(tableThGame);
+        tableTr.append(tableThGame);
         tableThGame.innerHTML = 'Game'
         const tableThScore = document.createElement("th");
         tableThScore.classList.add("table__th");
-        tableResult.append(tableThScore);
+        tableTr.append(tableThScore);
         tableThScore.innerHTML = 'Wins'
         result.forEach(function(value, index){
             console.log(index);
@@ -123,11 +127,11 @@ function tableWins(result){
             tableResult.append(tableTr);
             const tableTdGame = document.createElement("td");
             tableTdGame.classList.add("table__td");
-            tableResult.append(tableTdGame);
+            tableTr.append(tableTdGame);
             tableTdGame.innerHTML = index;
             const tableTdScore = document.createElement("td");
             tableTdScore.classList.add("table__td");
-            tableResult.append(tableTdScore);
+            tableTr.append(tableTdScore);
             tableTdScore.innerHTML = value;
 
         })

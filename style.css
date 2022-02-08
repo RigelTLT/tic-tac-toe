@@ -74,3 +74,10 @@ body {
 .area-result{
     padding: 50px;
 }
+.table__td {
+    padding: 10px 12px;
+    transition: .3s;
+ }
+ .table__tr:hover td {
+    background: rgba(51, 51, 153, .1);
+ }
