@@ -45,7 +45,8 @@ body {
 .windows-result__overlay {
   width: 100%;
   height: 100%;
-  position: absolute;
+  top: 0;
+  position: fixed;
   background-color: rgba(94, 97, 97, 0.664);
 }
 .windows-result__modal {
